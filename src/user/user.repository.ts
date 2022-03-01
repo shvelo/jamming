@@ -1,6 +1,6 @@
-import { Inject, Service } from "typedi";
-import { DatabaseService } from "../common/services/database.service";
-import { User } from "./models";
+import { Service } from "typedi"
+import { DatabaseService } from "../common/services/database.service"
+import { User } from "./models"
 
 @Service()
 export class UserRepository {
@@ -26,5 +26,9 @@ export class UserRepository {
     else {
       return User.findOne({ where: { username } })
     }
+  }
+
+  create(params: Partial<User>) {
+    return User.create(params)
   }
 }
