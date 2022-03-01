@@ -1,5 +1,6 @@
-import { Table, Column, Model, HasMany, BelongsTo, ForeignKey } from 'sequelize-typescript'
-import { Jam, User } from '.'
+import { Table, Column, Model, BelongsTo, ForeignKey } from 'sequelize-typescript'
+import { Jam } from '.'
+import { User } from '../../user/models'
 
 @Table
 export class JamParticipant extends Model {

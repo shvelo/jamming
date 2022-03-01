@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { UnauthorizedError } from "../../common/errors/UnauthorizedError";
-import AuthService from "../../services/auth.service";
+import Container from "typedi";
+import { AuthService } from "../../../auth/auth.service";
+import { UnauthorizedError } from "../../errors/UnauthorizedError";
 
 export function auth(req: Request, res: Response, next: NextFunction) {
   if (!req.headers.authorization) {
@@ -8,12 +9,12 @@ export function auth(req: Request, res: Response, next: NextFunction) {
   }
 
   const [method, token] = req.headers.authorization.split(' ')
-  if (method !== 'Bearer') {
+  if (method.toLowerCase() !== 'bearer') {
     return next(new UnauthorizedError())
   }
 
   try {
-    req.user = AuthService.getUserFromJwt(token)
+    req.user = Container.get(AuthService).getUserFromJwt(token)
     next()
   } catch (err) {
     next(err)

@@ -1,6 +1,6 @@
 import { Table, Column, Model, HasMany, DataType, BelongsTo, ForeignKey } from 'sequelize-typescript'
-import { User } from '.'
-import { JamParticipant } from './JamParticipant'
+import { User } from '../../user/models'
+import { JamParticipant } from '.'
 
 export enum JamStatus {
   pending = 'pending',

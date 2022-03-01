@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { ApiError } from "../../common/errors/ApiError";
-
+import { ApiError } from "../../errors";
 
 export function errorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
   if (res.headersSent) {
