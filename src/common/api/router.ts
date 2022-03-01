@@ -10,27 +10,27 @@ export class Router {
   }
 
   get(path: string, ...handlers: RequestHandler[]) {
-    console.log('Registering handler GET   ', path)
+    console.log(`Registering handler GET    /api${path}`)
     return this.router.get(path, ...handlers)
   }
 
   post(path: string, ...handlers: RequestHandler[]) {
-    console.log('Registering handler POST  ', path)
+    console.log(`Registering handler POST   /api${path}`)
     return this.router.post(path, ...handlers)
   }
 
   put(path: string, ...handlers: RequestHandler[]) {
-    console.log('Registering handler PUT   ', path)
+    console.log(`Registering handler PUT    /api${path}`)
     return this.router.put(path, ...handlers)
   }
 
   delete(path: string, ...handlers: RequestHandler[]) {
-    console.log('Registering handler DELETE', path)
+    console.log(`Registering handler DELETE  /api${path}`)
     return this.router.delete(path, ...handlers)
   }
 
   patch(path: string, ...handlers: RequestHandler[]) {
-    console.log('Registering handler PATCH ', path)
+    console.log(`Registering handler PATCH  /api${path}`)
     return this.router.patch(path, ...handlers)
   }
 }

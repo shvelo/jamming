@@ -3,7 +3,7 @@ import Container from "typedi";
 import { AuthService } from "../auth.service";
 import { UnauthorizedError } from "../../common/errors/UnauthorizedError";
 
-export function auth(req: Request, res: Response, next: NextFunction) {
+export async function auth(req: Request, res: Response, next: NextFunction) {
   if (!req.headers.authorization) {
     return next(new UnauthorizedError())
   }
@@ -14,7 +14,7 @@ export function auth(req: Request, res: Response, next: NextFunction) {
   }
 
   try {
-    res.locals.user = Container.get(AuthService).getUserFromJwt(token)
+    res.locals.user = await Container.get(AuthService).getUserFromJwt(token)
     next()
   } catch (err) {
     next(err)
