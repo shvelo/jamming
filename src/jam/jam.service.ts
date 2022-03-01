@@ -44,6 +44,9 @@ export class JamService {
     if (jam.status === JamStatus.started) {
       throw new ForbiddenError('Jam already started!')
     }
+    if (!jam.participants?.length) {
+      throw new ForbiddenError('Jam has no participants!')
+    }
     jam.status = JamStatus.started
     await jam.save()
     this.notifyJamStarted(jam)
