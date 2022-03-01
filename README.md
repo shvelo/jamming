@@ -41,31 +41,31 @@ Running without docker requires latest `node.js` and `npm` installed.
 
 ## Structure
 
-- dist/: compiled javascript files, ignored by git
-- src/: application source
-  - common/: common functionality shared by modules
-  - auth/: Auth module
-  - jam/: Jam module
-  - user/: User module
-  - app.module.ts: Main app module
-  - index.ts: Entry point, sets up dependency injection and runs app module
+- `dist/`: compiled javascript files, ignored by git
+- `src/`: application source
+  - `common/`: common functionality shared by modules
+  - `auth/`: Auth module
+  - `jam/`: Jam module
+  - `user/`: User module
+  - `app.module.ts`: Main app module
+  - `index.ts`: Entry point, sets up dependency injection and runs app module
 
 The application is split into modules, with `typedi` handling instantiation and dependencies.
 
 Module structure:
 
-- *moduleName*.module.ts: Imports all parts of the module and external dependencies, used for dependency injection
-- *moduleName*.service.ts: Provices main functionality of the module
-- *moduleName*.controller.ts: Registers all route handlers with the router, includes all route handlers
-- *moduleName*.repository.ts: Imports all models into database service, provides access to data
-- models/: Contains models in this module
-  - *modelName*.ts
+- `<moduleName>.module.ts`: Imports all parts of the module and external dependencies, used for dependency injection
+- `<moduleName>.service.ts`: Provices main functionality of the module
+- `<moduleName>.controller.ts`: Registers all route handlers with the router, includes all route handlers
+- `<moduleName>.repository.ts`: Imports all models into database service, provides access to data
+- `models/`: Contains models in this module
+  - `<modelName>.ts`
   - ...
-  - index.ts: exports all models
-- interfaces/: Contains interfaces defined in this module
-  - *interfaceName*.ts
+  - `index.ts`: exports all models
+- `interfaces/`: Contains interfaces defined in this module
+  - `<interfaceName>.ts`
   - ...
-  - index.ts: exports all interfaces
+  - `index.ts`: exports all interfaces
 
 ## Adding a new module
 
