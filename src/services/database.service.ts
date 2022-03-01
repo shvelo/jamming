@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize-typescript'
 
-import { User, Jam } from '../models'
+import { User, Jam, JamParticipant } from '../models'
 
 const databaseUrl = process.env.DB_URL
 
@@ -12,7 +12,7 @@ class DatabaseService {
     }
 
     this.sequelize = new Sequelize(databaseUrl, {
-      models: [User, Jam],
+      models: [User, Jam, JamParticipant],
       sync: {
         alter: true,
       },
