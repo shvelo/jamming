@@ -10,7 +10,21 @@ export class UserRepository {
     databaseService.addModels([User])
   }
 
-  findById(id: number) {
-    return User.findOne({ where: { id } })
+  findById(id: number, withPassword = false) {
+    if (withPassword) {
+      return User.scope('withPassword').findByPk(id)
+    }
+    else {
+      return User.findByPk(id)
+    }
+  }
+
+  findByUsername(username: string, withPassword = false) {
+    if (withPassword) {
+      return User.scope('withPassword').findOne({ where: { username } })
+    }
+    else {
+      return User.findOne({ where: { username } })
+    }
   }
 }

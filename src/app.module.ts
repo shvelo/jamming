@@ -1,11 +1,12 @@
-import express from "express";
-import { Inject, Service } from "typedi";
-import { AuthModule } from "./auth/auth.module";
-import { errorHandler } from "./common/api/middleware/error-handler";
-import { Router } from "./common/api/router";
-import { DatabaseService } from "./common/services/database.service";
-import { JamModule } from "./jam/jam.module";
-import { UserModule } from "./user/user.module";
+import express from "express"
+import bodyParser from "body-parser"
+import { Inject, Service } from "typedi"
+import { AuthModule } from "./auth/auth.module"
+import { errorHandler } from "./common/api/middleware/error-handler"
+import { Router } from "./common/api/router"
+import { DatabaseService } from "./common/services/database.service"
+import { JamModule } from "./jam/jam.module"
+import { UserModule } from "./user/user.module"
 
 @Service()
 export class AppModule {
@@ -14,7 +15,7 @@ export class AppModule {
 
   @Inject()
   databaseService!: DatabaseService
-  
+
   @Inject()
   jamModule!: JamModule
 
@@ -33,6 +34,9 @@ export class AppModule {
     console.log(`Database connection successful`)
 
     const app = express()
+
+    app.use(bodyParser.json())
+    app.use(bodyParser.urlencoded({ extended: false }))
 
     app.use('/api', this.router.router, errorHandler)
     app.use('/health', (req, res) => res.status(204).end())

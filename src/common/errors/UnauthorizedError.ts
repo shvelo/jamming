@@ -1,7 +1,7 @@
 import { ApiError } from "./ApiError";
 
 export class UnauthorizedError extends ApiError {
-  constructor() {
-    super(401, "Unauthorized")
+  constructor(message = "Unauthorized") {
+    super(401, message)
   }
 }

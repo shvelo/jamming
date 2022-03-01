@@ -10,17 +10,17 @@ export class Router {
   }
 
   get(path: string, ...handlers: RequestHandler[]) {
-    console.log('Registering handler GET', path)
+    console.log('Registering handler GET   ', path)
     return this.router.get(path, ...handlers)
   }
 
   post(path: string, ...handlers: RequestHandler[]) {
-    console.log('Registering handler POST', path)
+    console.log('Registering handler POST  ', path)
     return this.router.post(path, ...handlers)
   }
 
   put(path: string, ...handlers: RequestHandler[]) {
-    console.log('Registering handler PUT', path)
+    console.log('Registering handler PUT   ', path)
     return this.router.put(path, ...handlers)
   }
 
@@ -30,7 +30,7 @@ export class Router {
   }
 
   patch(path: string, ...handlers: RequestHandler[]) {
-    console.log('Registering handler PATCH', path)
+    console.log('Registering handler PATCH ', path)
     return this.router.patch(path, ...handlers)
   }
 }

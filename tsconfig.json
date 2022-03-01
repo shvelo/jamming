@@ -11,14 +11,9 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist/",
-    "typeRoots": [
-      "node_modules/@types",
-      "src/common/types"
-    ]
+    "outDir": "dist/"
   },
   "include": [
-    "src/common/types/**/*",
     "src/**/*"
   ],
   "exclude": [
