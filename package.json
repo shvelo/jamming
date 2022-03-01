@@ -10,7 +10,7 @@
     "test:watch": "jest --watch"
   },
   "author": "Nikoloz Shvelidze <shveloo@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.8",
