@@ -5,23 +5,25 @@ import { JWTPayload } from './interfaces'
 import { UserRepository } from '../user/user.repository'
 import { BadRequestError, UnauthorizedError } from '../common/errors'
 import { User } from '../user/models'
+import { AuthConfig } from './auth.config'
 
 @Service()
 export class AuthService {
   @Inject()
   userRepository!: UserRepository
 
-  private secret = process.env.JWT_SECRET
-  constructor() { }
+  constructor(
+    private config: AuthConfig,
+  ) { }
 
-  verifyJwt(jwt: string) {
-    if (!this.secret) throw new Error('Missing JWT secret!')
-    return verify(jwt, this.secret)
+  verifyJwt(jwt: string): JWTPayload {
+    if (!this.config.secret) throw new Error('Missing JWT secret!')
+    return verify(jwt, this.config.secret) as JWTPayload
   }
 
   signJwt(payload: JWTPayload) {
-    if (!this.secret) throw new Error('Missing JWT secret!')
-    return sign(payload, this.secret)
+    if (!this.config.secret) throw new Error('Missing JWT secret!')
+    return sign(payload, this.config.secret)
   }
 
   generateJwt(user: User) {
@@ -54,7 +56,7 @@ export class AuthService {
     return user
   }
 
-  private async updatePassword(user: User, newPassword: string) {
+  private async setPassword(user: User, newPassword: string) {
     const hash = await bcryptjs.hash(newPassword, 8)
     user.password = hash
   }
