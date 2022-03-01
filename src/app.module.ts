@@ -7,6 +7,7 @@ import { Router } from "./common/api/router"
 import { DatabaseService } from "./common/services/database.service"
 import { JamModule } from "./jam/jam.module"
 import { UserModule } from "./user/user.module"
+import { NotificationModule } from "./notification/notification.module"
 
 @Service()
 export class AppModule {
@@ -24,6 +25,9 @@ export class AppModule {
 
   @Inject()
   userModule!: UserModule
+
+  @Inject()
+  notificationModule!: NotificationModule
 
   port: number = parseInt(process.env['NODE_PORT'] || '8000')
   hostname: string = process.env['NODE_HOSTNAME'] || 'localhost'
