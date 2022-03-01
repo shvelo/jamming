@@ -1,5 +1,6 @@
-import { Inject, Service } from "typedi";
+import Container, { Inject, Service } from "typedi";
 import { ForbiddenError, NotFoundError } from "../common/errors";
+import { NotificationService } from "../notification/notification.service";
 import { User } from "../user/models";
 import { JamRepository } from "./jam.repository";
 import { Jam, JamStatus } from "./models";
@@ -44,7 +45,18 @@ export class JamService {
       throw new ForbiddenError('Jam already started!')
     }
     jam.status = JamStatus.started
-    return jam.save()
+    await jam.save()
+    this.notifyJamStarted(jam)
+    return jam
+  }
+
+  notifyJamStarted(jam: Jam) {
+    try {
+      const notificationService = Container.get(NotificationService)
+      notificationService.notifyJamStarted(jam)
+    } catch (err) {
+      console.error('Error occured while notifying jam participants', err)
+    }
   }
 
   async joinJam(jamId: number, user: User) {

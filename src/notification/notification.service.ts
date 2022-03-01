@@ -1,16 +1,13 @@
 import { Inject, Service } from "typedi"
-import { JamService } from "../jam/jam.service"
 import { Jam } from "../jam/models"
 import { User } from "../user/models"
-import { Notification, NotificationStatus, NotificationType } from "./models"
+import { NotificationStatus, NotificationType } from "./models"
 import { NotificationRepository } from "./notification.repository"
 
 @Service()
 export class NotificationService {
   @Inject()
   notificationRepository!: NotificationRepository
-  @Inject()
-  jamService!: JamService
 
   getNotifications(user: User, status?: NotificationStatus) {
     return this.notificationRepository.findByUserId(user.id, status)
